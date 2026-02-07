@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Habla Español",
+  "version": "1.0.0",
+  "description": "Learn Spanish with spaced repetition - practice phrases before browsing news",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://news.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "block_rules",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  },
+  "web_accessible_resources": [{
+    "resources": [
+      "block.html",
+      "block.js",
+      "popup.html",
+      "popup.js",
+      "storage.js",
+      "srs.js",
+      "fuzzy-match.js",
+      "phrases.js",
+      "data/*",
+      "icons/*",
+      "tests/*"
+    ],
+    "matches": ["<all_urls>"]
+  }],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Habla Español"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

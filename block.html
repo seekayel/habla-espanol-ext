@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habla Español</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --smoke: rgba(0, 0, 0, 0.38);
+      --surface: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #ede9e3;
+      --text-mid: rgba(237, 233, 227, 0.44);
+      --text-faint: rgba(237, 233, 227, 0.2);
+      --warm: #d4b896;
+      --warm-dim: rgba(212, 184, 150, 0.14);
+      --red: #cf7b73;
+      --red-dim: rgba(207, 123, 115, 0.12);
+      --green: #8bbf9f;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Backdrop ── */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: var(--smoke);
+      backdrop-filter: blur(32px) saturate(1.1);
+      -webkit-backdrop-filter: blur(32px) saturate(1.1);
+      animation: fadeIn 0.5s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); }
+    }
+
+    /* ── Dismiss ── */
+    .x {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 90;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.35;
+      transition: opacity 0.25s, transform 0.25s, background 0.25s;
+      animation: enterX 0.4s 0.3s ease both;
+    }
+    .x:hover { opacity: 0.85; background: rgba(255,255,255,0.1); transform: scale(1.06); }
+    .x svg { width: 15px; height: 15px; stroke: var(--text); stroke-width: 2; stroke-linecap: round; }
+    @keyframes enterX { from { opacity: 0; transform: scale(0.8); } to { opacity: 0.35; } }
+
+    /* ── Test badge ── */
+    .badge { position: fixed; top: 22px; left: 22px; z-index: 90; display: none; align-items: center; gap: 8px; animation: enterX 0.4s 0.2s ease both; }
+    .badge.on { display: flex; }
+    .badge span {
+      padding: 4px 12px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+    }
+    .badge .label { color: var(--green); background: rgba(139,191,159,0.1); border: 1px solid rgba(139,191,159,0.15); }
+    .badge .exit { color: var(--text-mid); background: var(--surface); border: 1px solid var(--border); cursor: pointer; transition: color 0.2s, background 0.2s; }
+    .badge .exit:hover { color: var(--text); background: rgba(255,255,255,0.08); }
+
+    /* ── Content ── */
+    .content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 400px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: rise 0.55s 0.08s cubic-bezier(0.2, 1, 0.3, 1) both;
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+
+    /* ── Image ── */
+    .img-well {
+      width: 240px;
+      height: 240px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      margin-bottom: 28px;
+      flex-shrink: 0;
+    }
+    .img-well img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .img-well img.loaded { opacity: 1; }
+
+    @media (min-height: 760px) { .img-well { width: 280px; height: 280px; } }
+
+    /* ── Feedback ── */
+    .fb {
+      height: 20px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-faint);
+      text-align: center;
+      transition: color 0.3s;
+    }
+    .fb.error { color: var(--red); }
+    .fb.hint { color: var(--text-mid); }
+    .fb.reveal { color: var(--warm); }
+    .fb.warning { color: var(--warm); }
+
+    /* ── Input ── */
+    .field { width: 100%; }
+
+    .inp {
+      width: 100%;
+      padding: 18px 20px;
+      font-family: 'DM Serif Text', serif;
+      font-size: 22px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      outline: none;
+      caret-color: var(--warm);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .inp::placeholder { color: var(--text-faint); font-style: italic; }
+    .inp:focus { border-color: rgba(212,184,150,0.25); box-shadow: 0 0 0 3px var(--warm-dim); }
+    .inp.shake { animation: shake 0.4s ease; }
+    .inp.err { border-color: rgba(207,123,115,0.35); box-shadow: 0 0 0 3px var(--red-dim); }
+    @keyframes shake {
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+      0%, 100% { transform: translateX(0); }
+    }
+
+    .go {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #111;
+      background: var(--warm);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .go:hover { opacity: 0.88; }
+    .go:active { transform: scale(0.985); }
+
+    /* ── Answer reveal (wrong answer) ── */
+    .reveal-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 80;
+      padding: 20px 24px;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    .reveal-bar.visible { transform: translateY(0); }
+    .reveal-bar .answer {
+      font-family: 'DM Serif Text', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--warm);
+    }
+    .reveal-bar .eng {
+      margin-top: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--text-mid);
+    }
+
+    /* ── Stats ── */
+    .stats {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 70;
+      display: flex;
+      gap: 16px;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+      animation: fadeUp 0.4s 0.5s ease both;
+      transition: opacity 0.3s;
+    }
+    .stats.hide { opacity: 0; }
+    .stats .sep { width: 2px; height: 2px; border-radius: 50%; background: var(--text-faint); align-self: center; }
+    @keyframes fadeUp { from { opacity: 0; transform: translate(-50%, 8px); } to { transform: translate(-50%, 0); } }
+
+    /* ── Whole-page exit ── */
+    body.leaving .backdrop { opacity: 0; transition: opacity 0.3s ease; }
+    body.leaving .content { opacity: 0; transform: translateY(-12px); transition: all 0.25s ease; }
+    body.leaving .x { opacity: 0; transition: opacity 0.2s; }
+    body.leaving .stats { opacity: 0; transition: opacity 0.2s; }
+    body.leaving .badge { opacity: 0; transition: opacity 0.2s; }
+  </style>
+</head>
+<body>
+
+  <div class="backdrop"></div>
+
+  <div class="badge" id="testModeBadge">
+    <span class="label">Practice</span>
+    <span class="exit" id="exitTestBtn">Exit</span>
+  </div>
+
+  <button class="x" id="skipBtn" aria-label="Skip">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+
+  <div class="content">
+    <div class="img-well">
+      <img id="phraseImage" src="" alt="Describe this in Spanish" />
+    </div>
+    <div class="fb" id="feedback">escribe en español</div>
+    <div class="field">
+      <input type="text" id="answerInput" class="inp" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="..." />
+      <button class="go" id="submitBtn">Check</button>
+    </div>
+  </div>
+
+  <div class="reveal-bar" id="revealBar">
+    <div class="answer" id="revealAnswer"></div>
+    <div class="eng" id="revealEnglish"></div>
+  </div>
+
+  <div class="stats" id="statsBar">
+    <span id="learnedCount">0 learned</span>
+    <span class="sep"></span>
+    <span id="dueCount">0 due</span>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="srs.js"></script>
+  <script src="fuzzy-match.js"></script>
+  <script src="phrases.js"></script>
+  <script src="block.js"></script>
+</body>
+</html>

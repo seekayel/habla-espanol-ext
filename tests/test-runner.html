@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habla Español - Test Runner</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 2rem;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #818cf8;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    #output {
+      background: #0f0f1a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .suite-name {
+      color: #818cf8;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .test-pass {
+      color: #10b981;
+    }
+
+    .test-fail {
+      color: #ef4444;
+    }
+
+    .test-skip {
+      color: #6b7280;
+    }
+
+    .error-detail {
+      color: #f87171;
+      margin-left: 2rem;
+    }
+
+    .summary {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      font-weight: bold;
+    }
+
+    .summary.pass {
+      color: #10b981;
+    }
+
+    .summary.fail {
+      color: #ef4444;
+    }
+
+    #run-btn {
+      background: #818cf8;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      margin-bottom: 1rem;
+    }
+
+    #run-btn:hover {
+      background: #6366f1;
+    }
+
+    #run-btn:disabled {
+      background: #4b5563;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Habla Español Test Runner</h1>
+
+  <button id="run-btn">Run Tests</button>
+
+  <div id="output">Click "Run Tests" to start...</div>
+
+  <!-- Load source files -->
+  <script src="../storage.js"></script>
+  <script src="../srs.js"></script>
+  <script src="../fuzzy-match.js"></script>
+  <script src="../phrases.js"></script>
+
+  <!-- Load test framework -->
+  <script src="test-runner.js"></script>
+  <script src="srs.test.js"></script>
+  <script src="fuzzy-match.test.js"></script>
+  <script src="storage.test.js"></script>
+
+  <script>
+    // Override console.log to write to output div
+    const outputDiv = document.getElementById('output');
+    const runBtn = document.getElementById('run-btn');
+
+    function formatOutput(message) {
+      if (message.includes('📦')) {
+        return `<span class="suite-name">${message}</span>`;
+      }
+      if (message.includes('✅')) {
+        return `<span class="test-pass">${message}</span>`;
+      }
+      if (message.includes('❌')) {
+        return `<span class="test-fail">${message}</span>`;
+      }
+      if (message.includes('⏭️')) {
+        return `<span class="test-skip">${message}</span>`;
+      }
+      if (message.includes('Error:') || message.includes('at ')) {
+        return `<span class="error-detail">${message}</span>`;
+      }
+      if (message.includes('Results:')) {
+        const hasFailures = message.includes('failed') && !message.includes('0 failed');
+        return `<span class="summary ${hasFailures ? 'fail' : 'pass'}">${message}</span>`;
+      }
+      return message;
+    }
+
+    const originalLog = console.log;
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      const message = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
+      outputDiv.innerHTML += formatOutput(message) + '\n';
+    };
+
+    async function runTests() {
+      outputDiv.innerHTML = '';
+      runBtn.disabled = true;
+      runBtn.textContent = 'Running...';
+
+      try {
+        const runner = new TestRunner();
+
+        // Register all test suites
+        registerFuzzyMatchTests(runner);
+        registerSRSTests(runner);
+        registerStorageTests(runner);
+
+        // Run tests
+        const results = await runner.run();
+
+        // Update button
+        runBtn.disabled = false;
+        runBtn.textContent = results.failed === 0 ? '✓ All Passed - Run Again' : '✗ Some Failed - Run Again';
+      } catch (error) {
+        console.log('Fatal error: ' + error.message);
+        runBtn.disabled = false;
+        runBtn.textContent = 'Run Tests';
+      }
+    }
+
+    runBtn.addEventListener('click', runTests);
+
+    // Auto-run on load (optional)
+    // runTests();
+  </script>
+</body>
+</html>
