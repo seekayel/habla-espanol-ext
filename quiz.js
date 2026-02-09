@@ -128,19 +128,29 @@ class QuizController {
     }
   }
 
-  // ── Correct: dismiss quiz screen immediately ──
+  // ── Correct: show answer + congrats, then dismiss ──
 
   async onCorrect() {
     await this.srs.recordReview(this.currentPhrase.id, true, false);
 
+    // Show the correct answer with congratulations
+    this.showReveal(this.currentPhrase.text, this.currentPhrase.english, true);
+
     if (this.isTestMode) {
-      // In practice mode, just cycle to next phrase
-      await this.loadNextPhrase();
-      await this.updateStats();
-      this.el.answerInput.focus();
+      // In practice mode, show congrats briefly then cycle
+      clearTimeout(this.revealTimer);
+      this.revealTimer = setTimeout(async () => {
+        this.hideReveal();
+        await this.loadNextPhrase();
+        await this.updateStats();
+        this.el.answerInput.focus();
+      }, 2500);
     } else {
-      // Exit animation then navigate
-      this.dismiss();
+      // Show congrats briefly then dismiss
+      clearTimeout(this.revealTimer);
+      this.revealTimer = setTimeout(() => {
+        this.dismiss();
+      }, 2500);
     }
   }
 
@@ -185,7 +195,7 @@ class QuizController {
   dismiss() {
     document.body.classList.add('leaving');
     setTimeout(() => {
-      chrome.storage.local.set({ bypassUntil: Date.now() + 5000 }, () => {
+      chrome.storage.local.set({ bypassUntil: Date.now() + 600000 }, () => {
         window.location.href = 'https://news.google.com';
       });
     }, 300);
@@ -193,15 +203,16 @@ class QuizController {
 
   // ── Reveal bar ──
 
-  showReveal(spanish, english) {
+  showReveal(spanish, english, isCorrect = false) {
     this.el.revealAnswer.textContent = spanish;
     this.el.revealEnglish.textContent = english;
+    this.el.revealBar.classList.toggle('correct', isCorrect);
     this.el.revealBar.classList.add('visible');
     this.el.statsBar.classList.add('hide');
   }
 
   hideReveal() {
-    this.el.revealBar.classList.remove('visible');
+    this.el.revealBar.classList.remove('visible', 'correct');
     this.el.statsBar.classList.remove('hide');
   }
 
