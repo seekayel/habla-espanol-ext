@@ -1,0 +1,14 @@
+{
+  "name": "habla-espanol-ext",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension to learn Spanish phrases",
+  "scripts": {
+    "generate-images": "node scripts/generate-images.js",
+    "generate-icons": "node scripts/generate-icons.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openai": "^4.77.0"
+  }
+}
