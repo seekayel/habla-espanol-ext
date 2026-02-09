@@ -55,27 +55,78 @@ In Practice Mode:
    - Visit `https://news.google.com`
    - You should see the quiz screen
 
+## CLI Tools
+
+The project includes Node.js scripts for generating assets. Install dependencies first:
+
+```bash
+npm install
+```
+
+### Generate Phrase Images
+
+Uses OpenAI DALL-E 3 to generate illustration images for the flashcard phrases.
+
+**Setup:**
+
+```bash
+echo "OPENAI_API_KEY=sk-..." > .env
+```
+
+**Usage:**
+
+```bash
+# Generate images for all phrases that don't have one yet
+node scripts/generate-images.js
+
+# Generate images for specific phrase IDs
+node scripts/generate-images.js --ids 1,2,3
+
+# Generate image for a specific phrase by text
+node scripts/generate-images.js --phrase "Hola"
+```
+
+The script:
+- Reads the prompt template from `prompts/image-gen.txt`
+- Calls DALL-E 3 for each phrase and saves the PNG to `data/images/`
+- Updates `data/phrases.json` with the `image` path for each generated phrase
+- Skips phrases that already have an image on disk (safe to re-run)
+
+### Generate Extension Icons
+
+Creates placeholder SVG icons for the extension.
+
+```bash
+node scripts/generate-icons.js
+```
+
 ## Project Structure
 
 ```
 habla-espanol-ext/
 ├── manifest.json        # Chrome extension manifest
-├── rules.json          # Declarative net request rules
-├── background.js       # Service worker
-├── popup.html          # Extension popup menu
-├── popup.js            # Popup logic
-├── quiz.html           # Quiz screen
-├── quiz.js             # Quiz screen logic
-├── storage.js          # IndexedDB wrapper
-├── srs.js              # Spaced repetition algorithm
-├── fuzzy-match.js      # Answer validation
-├── phrases.js          # Phrase data loader
+├── package.json         # Node.js dependencies for CLI tools
+├── rules.json           # Declarative net request rules
+├── background.js        # Service worker
+├── popup.html           # Extension popup menu
+├── popup.js             # Popup logic
+├── quiz.html            # Quiz screen
+├── quiz.js              # Quiz screen logic
+├── storage.js           # IndexedDB wrapper
+├── srs.js               # Spaced repetition algorithm
+├── fuzzy-match.js       # Answer validation
+├── phrases.js           # Phrase data loader
 ├── data/
-│   ├── phrases.json    # Phrase configuration (100 phrases)
-│   └── phrases.md      # Original phrase list
-├── icons/              # Extension icons
-├── scripts/            # Build utilities
-└── tests/              # Test suite
+│   ├── phrases.json     # Phrase configuration (100 phrases)
+│   ├── phrases.md       # Original phrase list
+│   └── images/          # Generated phrase images (PNG)
+├── icons/               # Extension icons
+├── prompts/
+│   └── image-gen.txt    # DALL-E prompt template
+├── scripts/
+│   ├── generate-images.js  # DALL-E image generator CLI
+│   └── generate-icons.js   # Extension icon generator
+└── tests/               # Test suite
     ├── test-runner.html
     ├── test-runner.js
     ├── srs.test.js
