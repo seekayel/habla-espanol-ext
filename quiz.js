@@ -12,6 +12,8 @@ class QuizController {
     this.attempts = 0;
     this.revealTimer = null;
     this.isTestMode = new URLSearchParams(window.location.search).has('test');
+    this.destinationUrl = window.location.hash.slice(1) || null;
+    this.settings = { correctCooldownMin: 10, incorrectCooldownMin: 3 };
 
     this.el = {
       phraseImage: document.getElementById('phraseImage'),
@@ -21,7 +23,6 @@ class QuizController {
       feedback: document.getElementById('feedback'),
       revealBar: document.getElementById('revealBar'),
       revealAnswer: document.getElementById('revealAnswer'),
-      revealEnglish: document.getElementById('revealEnglish'),
       learnedCount: document.getElementById('learnedCount'),
       dueCount: document.getElementById('dueCount'),
       statsBar: document.getElementById('statsBar'),
@@ -40,6 +41,7 @@ class QuizController {
 
       this.srs = new SpacedRepetition(this.storage, this.phraseLoader.getPhrases());
 
+      await this.loadSettings();
       await this.loadNextPhrase();
       await this.updateStats();
       this.bind();
@@ -53,6 +55,21 @@ class QuizController {
       console.error('Init failed:', err);
       this.setFeedback('Failed to load. Refresh the page.', 'error');
     }
+  }
+
+  async loadSettings() {
+    return new Promise((resolve) => {
+      chrome.storage.local.get('settings', (data) => {
+        const s = data.settings || {};
+        if (typeof s.correctCooldownMin === 'number') {
+          this.settings.correctCooldownMin = s.correctCooldownMin;
+        }
+        if (typeof s.incorrectCooldownMin === 'number') {
+          this.settings.incorrectCooldownMin = s.incorrectCooldownMin;
+        }
+        resolve();
+      });
+    });
   }
 
   bind() {
@@ -133,8 +150,7 @@ class QuizController {
   async onCorrect() {
     await this.srs.recordReview(this.currentPhrase.id, true, false);
 
-    // Show the correct answer with congratulations
-    this.showReveal(this.currentPhrase.text, this.currentPhrase.english, true);
+    this.showReveal(this.currentPhrase.text, true);
 
     if (this.isTestMode) {
       // In practice mode, show congrats briefly then cycle
@@ -146,32 +162,40 @@ class QuizController {
         this.el.answerInput.focus();
       }, 2500);
     } else {
-      // Show congrats briefly then dismiss
+      // Show congrats briefly then dismiss with correct cooldown
       clearTimeout(this.revealTimer);
       this.revealTimer = setTimeout(() => {
-        this.dismiss();
+        this.dismiss(this.settings.correctCooldownMin);
       }, 2500);
     }
   }
 
-  // ── Wrong: show correct answer for 3s, then hide it ──
+  // ── Wrong: show correct answer, then dismiss ──
 
   async onWrong() {
     this.shakeInput();
     this.flashError();
 
-    // Show the correct answer in the reveal bar
-    this.showReveal(this.currentPhrase.text, this.currentPhrase.english);
+    this.showReveal(this.currentPhrase.text, false);
 
-    // After 3 seconds, hide the reveal and let them try again
-    clearTimeout(this.revealTimer);
-    this.revealTimer = setTimeout(() => {
-      this.hideReveal();
-    }, 3000);
+    if (this.isTestMode) {
+      // In practice mode, show answer briefly then let them try again
+      clearTimeout(this.revealTimer);
+      this.revealTimer = setTimeout(() => {
+        this.hideReveal();
+      }, 3000);
 
-    // After 3 failed attempts, record a failure in SRS
-    if (this.attempts >= 3) {
+      if (this.attempts >= 3) {
+        await this.srs.recordReview(this.currentPhrase.id, false, false);
+      }
+    } else {
+      // Record failure and dismiss with incorrect cooldown
       await this.srs.recordReview(this.currentPhrase.id, false, false);
+
+      clearTimeout(this.revealTimer);
+      this.revealTimer = setTimeout(() => {
+        this.dismiss(this.settings.incorrectCooldownMin);
+      }, 2500);
     }
   }
 
@@ -185,27 +209,29 @@ class QuizController {
       await this.updateStats();
       this.el.answerInput.focus();
     } else {
-      this.dismiss();
+      this.dismiss(this.settings.incorrectCooldownMin);
     }
   }
 
   /**
    * Animate the quiz screen out, then navigate to the destination.
+   * @param {number} cooldownMin - Cooldown in minutes before next quiz
    */
-  dismiss() {
+  dismiss(cooldownMin) {
+    const cooldownMs = cooldownMin * 60000;
+    const dest = this.destinationUrl || 'https://news.google.com';
     document.body.classList.add('leaving');
     setTimeout(() => {
-      chrome.storage.local.set({ bypassUntil: Date.now() + 600000 }, () => {
-        window.location.href = 'https://news.google.com';
+      chrome.storage.local.set({ bypassUntil: Date.now() + cooldownMs }, () => {
+        window.location.href = dest;
       });
     }, 300);
   }
 
   // ── Reveal bar ──
 
-  showReveal(spanish, english, isCorrect = false) {
+  showReveal(spanish, isCorrect = false) {
     this.el.revealAnswer.textContent = spanish;
-    this.el.revealEnglish.textContent = english;
     this.el.revealBar.classList.toggle('correct', isCorrect);
     this.el.revealBar.classList.add('visible');
     this.el.statsBar.classList.add('hide');
