@@ -1,43 +1,7 @@
 /**
  * Background Service Worker for Habla Español
- * Handles extension lifecycle, dynamic redirect rules, and bypass management
+ * Handles extension lifecycle and bypass management
  */
-
-const REDIRECT_RULE_ID = 100;
-
-/**
- * Install the dynamic redirect rule that sends news.google.com
- * to the quiz page with the original URL encoded in the hash.
- */
-function installRedirectRule() {
-  const quizUrl = chrome.runtime.getURL('quiz.html');
-  return chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: [REDIRECT_RULE_ID],
-    addRules: [{
-      id: REDIRECT_RULE_ID,
-      priority: 1,
-      action: {
-        type: 'redirect',
-        redirect: {
-          regexSubstitution: quizUrl + '#\\0'
-        }
-      },
-      condition: {
-        regexFilter: '^(https?://news\\.google\\.com.*)$',
-        resourceTypes: ['main_frame']
-      }
-    }]
-  });
-}
-
-/**
- * Remove the dynamic redirect rule (for bypass periods).
- */
-function removeRedirectRule() {
-  return chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: [REDIRECT_RULE_ID]
-  });
-}
 
 // Extension installation
 chrome.runtime.onInstalled.addListener((details) => {
@@ -55,9 +19,6 @@ chrome.runtime.onInstalled.addListener((details) => {
       }
     });
   }
-
-  // Always ensure the dynamic redirect rule is installed
-  installRedirectRule().catch(console.error);
 });
 
 // Handle messages from content scripts or popup
@@ -101,27 +62,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     default:
       sendResponse({ error: 'Unknown message type' });
-  }
-});
-
-// Dynamic rule management for bypass
-chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (namespace === 'local' && changes.bypassUntil) {
-    const bypassUntil = changes.bypassUntil.newValue;
-
-    if (bypassUntil && bypassUntil > Date.now()) {
-      // Temporarily remove redirect rule
-      removeRedirectRule().catch(console.error);
-
-      // Re-install after bypass expires
-      const delay = bypassUntil - Date.now();
-      setTimeout(() => {
-        installRedirectRule().catch(console.error);
-      }, delay);
-    } else {
-      // Ensure redirect rule is active
-      installRedirectRule().catch(console.error);
-    }
   }
 });
 

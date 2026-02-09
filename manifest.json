@@ -4,15 +4,16 @@
   "version": "1.0.0",
   "description": "Learn Spanish with spaced repetition - practice phrases before browsing news",
   "permissions": [
-    "storage",
-    "declarativeNetRequest"
-  ],
-  "host_permissions": [
-    "*://news.google.com/*"
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [{
+    "matches": ["*://news.google.com/*"],
+    "js": ["content-script.js"],
+    "run_at": "document_start"
+  }],
   "web_accessible_resources": [{
     "resources": [
       "quiz.html",

@@ -12,7 +12,6 @@ class QuizController {
     this.attempts = 0;
     this.revealTimer = null;
     this.isTestMode = new URLSearchParams(window.location.search).has('test');
-    this.destinationUrl = window.location.hash.slice(1) || null;
     this.settings = { correctCooldownMin: 10, incorrectCooldownMin: 3 };
 
     this.el = {
@@ -219,12 +218,17 @@ class QuizController {
    */
   dismiss(cooldownMin) {
     const cooldownMs = cooldownMin * 60000;
-    const dest = this.destinationUrl || 'https://news.google.com';
     document.body.classList.add('leaving');
     setTimeout(() => {
-      chrome.storage.local.set({ bypassUntil: Date.now() + cooldownMs }, () => {
-        window.location.href = dest;
-      });
+      if (window.parent !== window) {
+        // Inside overlay iframe — notify content script
+        window.parent.postMessage({ type: 'HABLA_QUIZ_COMPLETE', cooldownMs }, '*');
+      } else {
+        // Standalone (popup practice / test) — set bypass and navigate
+        chrome.storage.local.set({ bypassUntil: Date.now() + cooldownMs }, () => {
+          window.location.href = 'https://news.google.com';
+        });
+      }
     }, 300);
   }
 
