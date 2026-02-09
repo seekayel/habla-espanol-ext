@@ -1,6 +1,6 @@
 # Habla Español 🇪🇸
 
-A Chrome extension that helps you learn Spanish using spaced repetition. It blocks `news.google.com` until you correctly type a Spanish phrase shown as an image.
+A Chrome extension that helps you learn Spanish using spaced repetition. It shows a quiz screen on `news.google.com` until you correctly type a Spanish phrase shown as an image.
 
 ## Features
 
@@ -10,17 +10,17 @@ A Chrome extension that helps you learn Spanish using spaced repetition. It bloc
 - **Progress Tracking**: Stores your progress locally using IndexedDB
 - **Beautiful UI**: Clean, focused design with smooth animations
 - **Skip Option**: Small, inconspicuous skip button for when you're in a hurry
-- **Practice Mode**: Click the extension icon to practice anytime without visiting blocked sites
+- **Practice Mode**: Click the extension icon to practice anytime without triggering the quiz screen
 
 ## Usage
 
-### Automatic Blocking
-Visit `news.google.com` and you'll be prompted to type a Spanish phrase before continuing.
+### Automatic Quiz
+Visit `news.google.com` and you'll see a quiz screen prompting you to type a Spanish phrase before continuing.
 
 ### Practice Mode (Testing)
 Click the extension icon in your toolbar to open the popup menu:
-- **Practice Now**: Opens the learning page for continuous practice
-- **Test Block Page**: Same as Practice Now, with visual indicator
+- **Practice Now**: Opens the quiz screen for continuous practice
+- **Test Quiz Screen**: Same as Practice Now, with visual indicator
 - **Reset Progress**: Clears all learning data (use with caution)
 - **Run Tests**: Opens the test runner for development
 
@@ -53,7 +53,7 @@ In Practice Mode:
 
 5. **Test it**
    - Visit `https://news.google.com`
-   - You should see the learning screen
+   - You should see the quiz screen
 
 ## Project Structure
 
@@ -64,8 +64,8 @@ habla-espanol-ext/
 ├── background.js       # Service worker
 ├── popup.html          # Extension popup menu
 ├── popup.js            # Popup logic
-├── block.html          # Main learning page
-├── block.js            # Learning page logic
+├── quiz.html           # Quiz screen
+├── quiz.js             # Quiz screen logic
 ├── storage.js          # IndexedDB wrapper
 ├── srs.js              # Spaced repetition algorithm
 ├── fuzzy-match.js      # Answer validation
@@ -152,11 +152,11 @@ Answers are validated with fuzzy matching:
 - Accents flexible by default (`años` matches `anos`)
 - Minor typos allowed (1 error per 5 characters)
 
-### Blocking Flow
+### Quiz Flow
 
 1. User visits `news.google.com`
-2. Declarative net request redirects to `block.html`
-3. Extension shows a phrase image
+2. Declarative net request redirects to `quiz.html`
+3. Quiz screen shows a phrase image
 4. User types the Spanish phrase
 5. Answer is validated with fuzzy matching
 6. On success: 5-second bypass, redirect to news
@@ -166,7 +166,7 @@ Answers are validated with fuzzy matching:
 
 ### Modifying the UI
 
-The block page uses Tailwind CSS (via CDN). Edit `block.html` to customize:
+The quiz screen uses Tailwind CSS (via CDN). Edit `quiz.html` to customize:
 
 - Colors defined in `tailwind.config` section
 - Animations in the `<style>` block
@@ -191,7 +191,7 @@ Edit `fuzzy-match.js` to change:
 
 ## Troubleshooting
 
-### Extension Not Blocking
+### Quiz Screen Not Showing
 
 1. Check that the extension is enabled in `chrome://extensions/`
 2. Verify that `news.google.com` matches the rule pattern

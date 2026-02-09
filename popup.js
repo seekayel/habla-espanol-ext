@@ -36,18 +36,18 @@ class PopupController {
   }
 
   setupEventListeners() {
-    // Practice Now - opens block page in new tab
+    // Practice Now - opens quiz screen in new tab
     document.getElementById('practiceBtn').addEventListener('click', () => {
       chrome.tabs.create({
-        url: chrome.runtime.getURL('block.html')
+        url: chrome.runtime.getURL('quiz.html')
       });
       window.close();
     });
 
-    // Test Block Page - simulates visiting blocked site
+    // Test Quiz Screen - simulates visiting blocked site
     document.getElementById('testBtn').addEventListener('click', () => {
       chrome.tabs.create({
-        url: chrome.runtime.getURL('block.html?test=true')
+        url: chrome.runtime.getURL('quiz.html?test=true')
       });
       window.close();
     });

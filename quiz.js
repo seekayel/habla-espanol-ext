@@ -1,9 +1,9 @@
 /**
- * Block Page Controller for Habla Español
+ * Quiz Screen Controller for Habla Español
  * Handles phrase display, answer validation, and navigation
  */
 
-class BlockController {
+class QuizController {
   constructor() {
     this.storage = null;
     this.srs = null;
@@ -128,7 +128,7 @@ class BlockController {
     }
   }
 
-  // ── Correct: dismiss interstitial immediately ──
+  // ── Correct: dismiss quiz screen immediately ──
 
   async onCorrect() {
     await this.srs.recordReview(this.currentPhrase.id, true, false);
@@ -180,7 +180,7 @@ class BlockController {
   }
 
   /**
-   * Animate the whole overlay out, then navigate to the destination.
+   * Animate the quiz screen out, then navigate to the destination.
    */
   dismiss() {
     document.body.classList.add('leaving');
@@ -244,5 +244,5 @@ class BlockController {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  new BlockController().init();
+  new QuizController().init();
 });

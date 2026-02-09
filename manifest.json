@@ -22,8 +22,8 @@
   },
   "web_accessible_resources": [{
     "resources": [
-      "block.html",
-      "block.js",
+      "quiz.html",
+      "quiz.js",
       "popup.html",
       "popup.js",
       "storage.js",

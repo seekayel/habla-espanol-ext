@@ -5,7 +5,7 @@
     "action": {
       "type": "redirect",
       "redirect": {
-        "extensionPath": "/block.html"
+        "extensionPath": "/quiz.html"
       }
     },
     "condition": {
