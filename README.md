@@ -77,13 +77,13 @@ echo "OPENAI_API_KEY=sk-..." > .env
 
 ```bash
 # Generate images for all phrases that don't have one yet
-node scripts/generate-images.js
+npm run generate-images
 
 # Generate images for specific phrase IDs
-node scripts/generate-images.js --ids 1,2,3
+npm run generate-images -- --ids 1,2,3
 
 # Generate image for a specific phrase by text
-node scripts/generate-images.js --phrase "Hola"
+npm run generate-images -- --phrase "Hola"
 ```
 
 The script:
