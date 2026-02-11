@@ -74,7 +74,7 @@ function parseArgs(argv) {
  */
 async function generateWithOpenAI(openai, prompt) {
   const response = await openai.images.generate({
-    model: 'dall-e-3',
+    model: 'gpt-image-1.5',
     prompt: prompt,
     n: 1,
     size: '1024x1024',
