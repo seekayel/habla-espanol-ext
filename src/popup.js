@@ -17,7 +17,7 @@ class PopupController {
       await this.storage.init();
 
       // Load phrases from JSON
-      const response = await fetch(chrome.runtime.getURL('data/phrases.json'));
+      const response = await fetch(chrome.runtime.getURL('src/data/phrases.json'));
       const data = await response.json();
       this.phrases = data.phrases || [];
 
@@ -39,7 +39,7 @@ class PopupController {
     // Practice Now - opens quiz screen in new tab
     document.getElementById('practiceBtn').addEventListener('click', () => {
       chrome.tabs.create({
-        url: chrome.runtime.getURL('quiz.html')
+        url: chrome.runtime.getURL('src/quiz.html')
       });
       window.close();
     });
@@ -47,7 +47,7 @@ class PopupController {
     // Test Quiz Screen - simulates visiting blocked site
     document.getElementById('testBtn').addEventListener('click', () => {
       chrome.tabs.create({
-        url: chrome.runtime.getURL('quiz.html?test=true')
+        url: chrome.runtime.getURL('src/quiz.html?test=true')
       });
       window.close();
     });
@@ -65,7 +65,7 @@ class PopupController {
     document.getElementById('testsLink').addEventListener('click', (e) => {
       e.preventDefault();
       chrome.tabs.create({
-        url: chrome.runtime.getURL('tests/test-runner.html')
+        url: chrome.runtime.getURL('tests/test-runner.html')  // tests stay at root
       });
       window.close();
     });

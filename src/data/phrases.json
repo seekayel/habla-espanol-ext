@@ -99,7 +99,7 @@
     { "id": 79, "text": "El baño", "category": "daily", "english": "The bathroom", "emoji": "🚻" },
     { "id": 80, "text": "Necesito ayuda", "category": "daily", "english": "I need help", "emoji": "🆘" },
     { "id": 81, "text": "Estoy perdido/a", "category": "daily", "english": "I'm lost", "emoji": "😰" },
-    { "id": 82, "text": "Hace mucho calor", "category": "daily", "english": "It's very hot", "emoji": "🥵", "image": "data/images/hace-mucho-calor.png" },
+    { "id": 82, "text": "Hace mucho calor", "category": "daily", "english": "It's very hot", "emoji": "🥵", "image": "src/data/images/hace-mucho-calor.png" },
     { "id": 83, "text": "Tengo calor", "category": "daily", "english": "I'm hot", "emoji": "🌡️" },
     { "id": 84, "text": "Me duele", "category": "daily", "english": "It hurts", "emoji": "🤕" },
     { "id": 85, "text": "Una farmacia", "category": "daily", "english": "A pharmacy", "emoji": "💊" },

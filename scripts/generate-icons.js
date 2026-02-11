@@ -32,7 +32,7 @@ const createPlaceholderPNG = (size) => {
 // For Chrome extension, we can actually use SVG icons in manifest v3
 // But we'll provide PNG fallbacks
 
-const iconsDir = path.join(__dirname, '..', 'icons');
+const iconsDir = path.join(__dirname, '..', 'src', 'icons');
 
 // Ensure directory exists
 if (!fs.existsSync(iconsDir)) {

@@ -7,41 +7,41 @@
     "storage"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background.js"
   },
   "content_scripts": [{
     "matches": ["*://news.google.com/*"],
-    "js": ["content-script.js"],
+    "js": ["src/content-script.js"],
     "run_at": "document_start"
   }],
   "web_accessible_resources": [{
     "resources": [
-      "quiz.html",
-      "quiz.js",
-      "popup.html",
-      "popup.js",
-      "storage.js",
-      "srs.js",
-      "fuzzy-match.js",
-      "phrases.js",
-      "data/*",
-      "icons/*",
+      "src/quiz.html",
+      "src/quiz.js",
+      "src/popup.html",
+      "src/popup.js",
+      "src/storage.js",
+      "src/srs.js",
+      "src/fuzzy-match.js",
+      "src/phrases.js",
+      "src/data/*",
+      "src/icons/*",
       "tests/*"
     ],
     "matches": ["<all_urls>"]
   }],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "src/popup.html",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "src/icons/icon16.png",
+      "48": "src/icons/icon48.png",
+      "128": "src/icons/icon128.png"
     },
     "default_title": "Habla Español"
   },
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "src/icons/icon16.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png"
   }
 }

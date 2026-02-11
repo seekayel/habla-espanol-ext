@@ -88,8 +88,8 @@ node scripts/generate-images.js --phrase "Hola"
 
 The script:
 - Reads the prompt template from `prompts/image-gen.txt`
-- Calls DALL-E 3 for each phrase and saves the PNG to `data/images/`
-- Updates `data/phrases.json` with the `image` path for each generated phrase
+- Calls DALL-E 3 for each phrase and saves the PNG to `src/data/images/`
+- Updates `src/data/phrases.json` with the `image` path for each generated phrase
 - Skips phrases that already have an image on disk (safe to re-run)
 
 ### Generate Extension Icons
@@ -105,22 +105,24 @@ node scripts/generate-icons.js
 ```
 habla-espanol-ext/
 ├── manifest.json        # Chrome extension manifest
-├── package.json         # Node.js dependencies for CLI tools
 ├── rules.json           # Declarative net request rules
-├── background.js        # Service worker
-├── popup.html           # Extension popup menu
-├── popup.js             # Popup logic
-├── quiz.html            # Quiz screen
-├── quiz.js              # Quiz screen logic
-├── storage.js           # IndexedDB wrapper
-├── srs.js               # Spaced repetition algorithm
-├── fuzzy-match.js       # Answer validation
-├── phrases.js           # Phrase data loader
-├── data/
-│   ├── phrases.json     # Phrase configuration (100 phrases)
-│   ├── phrases.md       # Original phrase list
-│   └── images/          # Generated phrase images (PNG)
-├── icons/               # Extension icons
+├── package.json         # Node.js dependencies for CLI tools
+├── src/                 # Extension runtime files
+│   ├── background.js    # Service worker
+│   ├── content-script.js # Content script (overlay + iframe)
+│   ├── popup.html       # Extension popup menu
+│   ├── popup.js         # Popup logic
+│   ├── quiz.html        # Quiz screen
+│   ├── quiz.js          # Quiz screen logic
+│   ├── storage.js       # IndexedDB wrapper
+│   ├── srs.js           # Spaced repetition algorithm
+│   ├── fuzzy-match.js   # Answer validation
+│   ├── phrases.js       # Phrase data loader
+│   ├── data/
+│   │   ├── phrases.json # Phrase configuration (100 phrases)
+│   │   ├── phrases.md   # Original phrase list
+│   │   └── images/      # Generated phrase images (PNG)
+│   └── icons/           # Extension icons
 ├── prompts/
 │   └── image-gen.txt    # DALL-E prompt template
 ├── scripts/
@@ -138,7 +140,7 @@ habla-espanol-ext/
 
 ### Adding New Phrases
 
-Edit `data/phrases.json` to add or modify phrases:
+Edit `src/data/phrases.json` to add or modify phrases:
 
 ```json
 {
@@ -260,7 +262,7 @@ The extension includes PNG icons. If they're missing:
 
 1. Open `scripts/create-icons.html` in a browser
 2. Right-click each canvas and save as PNG
-3. Save to the `icons/` folder
+3. Save to the `src/icons/` folder
 
 ## License
 

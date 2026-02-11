@@ -17,7 +17,7 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const OpenAI = require('openai');
 
-const DATA_DIR = path.join(__dirname, '..', 'data');
+const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
 const IMAGES_DIR = path.join(DATA_DIR, 'images');
 const PHRASES_PATH = path.join(DATA_DIR, 'phrases.json');
 const PROMPT_PATH = path.join(__dirname, '..', 'prompts', 'image-gen.txt');
@@ -124,7 +124,7 @@ async function main() {
 
   for (const phrase of targetPhrases) {
     const slug = toSlug(phrase.text);
-    const relPath = `data/images/${slug}.png`;
+    const relPath = `src/data/images/${slug}.png`;
     const absPath = path.join(__dirname, '..', relPath);
 
     // Skip if image already exists on disk

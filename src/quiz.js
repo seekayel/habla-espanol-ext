@@ -36,7 +36,7 @@ class QuizController {
       await this.storage.init();
 
       this.phraseLoader = new PhraseLoader();
-      await this.phraseLoader.load('data/phrases.json');
+      await this.phraseLoader.load('src/data/phrases.json');
 
       this.srs = new SpacedRepetition(this.storage, this.phraseLoader.getPhrases());
 

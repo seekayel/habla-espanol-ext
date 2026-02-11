@@ -30,7 +30,7 @@
 
     // No bypass — show quiz iframe
     const iframe = document.createElement('iframe');
-    iframe.src = chrome.runtime.getURL('quiz.html');
+    iframe.src = chrome.runtime.getURL('src/quiz.html');
     iframe.style.cssText =
       'position:fixed;inset:0;width:100%;height:100%;border:none;z-index:2147483647;';
     iframe.allow = '';
