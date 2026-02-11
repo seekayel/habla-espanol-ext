@@ -856,7 +856,8 @@
       "category": "extras",
       "english": "Cheers!/Bless you!",
       "emoji": "🥂",
-      "complexity": 1
+      "complexity": 1,
+      "image": "src/data/images/salud.png"
     },
     {
       "id": 101,

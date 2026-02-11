@@ -9,6 +9,7 @@
     "import-phrases": "node scripts/import-phrases.js"
   },
   "dependencies": {
+    "@google/genai": "^1.40.0",
     "dotenv": "^16.4.7",
     "openai": "^4.77.0"
   }

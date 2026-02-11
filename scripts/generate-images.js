@@ -2,12 +2,18 @@
  * Image Generator Script
  * Run with: node scripts/generate-images.js
  *
- * Generates illustration images for Spanish phrases using OpenAI DALL-E.
+ * Generates illustration images for Spanish phrases using OpenAI DALL-E
+ * or Google Gemini.
  *
  * Usage:
- *   node scripts/generate-images.js                   # all phrases missing images
- *   node scripts/generate-images.js --ids 1,2,3       # specific phrase IDs
- *   node scripts/generate-images.js --phrase "Hola"   # specific phrase by text
+ *   node scripts/generate-images.js                              # all phrases missing images (google)
+ *   node scripts/generate-images.js --ids 1,2,3                  # specific phrase IDs
+ *   node scripts/generate-images.js --phrase "Hola"              # specific phrase by text
+ *   node scripts/generate-images.js --provider openai            # use OpenAI DALL-E
+ *   node scripts/generate-images.js --provider google            # use Google Gemini (default)
+ *
+ * When --ids or --phrase is specified, existing images are overwritten.
+ * When running without filters, existing images are skipped.
  */
 
 const fs = require('fs');
@@ -16,6 +22,7 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const OpenAI = require('openai');
+const { GoogleGenAI } = require('@google/genai');
 
 const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
 const IMAGES_DIR = path.join(DATA_DIR, 'images');
@@ -39,7 +46,7 @@ function toSlug(text) {
  */
 function parseArgs(argv) {
   const args = argv.slice(2);
-  const result = { ids: null, phrase: null };
+  const result = { ids: null, phrase: null, provider: 'google' };
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--ids' && args[i + 1]) {
@@ -48,18 +55,68 @@ function parseArgs(argv) {
     } else if (args[i] === '--phrase' && args[i + 1]) {
       result.phrase = args[i + 1];
       i++;
+    } else if (args[i] === '--provider' && args[i + 1]) {
+      const val = args[i + 1].toLowerCase();
+      if (val !== 'openai' && val !== 'google') {
+        console.error(`Error: --provider must be "openai" or "google" (got "${args[i + 1]}")`);
+        process.exit(1);
+      }
+      result.provider = val;
+      i++;
     }
   }
 
   return result;
 }
 
+/**
+ * Generate an image using OpenAI DALL-E 3.
+ */
+async function generateWithOpenAI(openai, prompt) {
+  const response = await openai.images.generate({
+    model: 'dall-e-3',
+    prompt: prompt,
+    n: 1,
+    size: '1024x1024',
+    response_format: 'b64_json',
+  });
+  return Buffer.from(response.data[0].b64_json, 'base64');
+}
+
+/**
+ * Generate an image using Google Gemini.
+ */
+async function generateWithGoogle(googleAI, prompt) {
+  const response = await googleAI.models.generateContent({
+    model: 'gemini-2.5-flash-image',
+    contents: prompt,
+    config: {
+      responseModalities: ['IMAGE'],
+    },
+  });
+  const parts = response.candidates[0].content.parts;
+  const imagePart = parts.find((p) => p.inlineData);
+  if (!imagePart) {
+    throw new Error('No image data returned from Google Gemini');
+  }
+  return Buffer.from(imagePart.inlineData.data, 'base64');
+}
+
 async function main() {
+  // Parse CLI filters (need provider before env validation)
+  const filters = parseArgs(process.argv);
+
   // Validate environment
-  if (!process.env.OPENAI_API_KEY) {
+  if (filters.provider === 'openai' && !process.env.OPENAI_API_KEY) {
     console.error('Error: OPENAI_API_KEY not found.');
     console.error('Create a .env file in the project root with:');
     console.error('  OPENAI_API_KEY=sk-...');
+    process.exit(1);
+  }
+  if (filters.provider === 'google' && !process.env.GOOGLE_GENERATIVE_API_KEY) {
+    console.error('Error: GOOGLE_GENERATIVE_API_KEY not found.');
+    console.error('Create a .env file in the project root with:');
+    console.error('  GOOGLE_GENERATIVE_API_KEY=...');
     process.exit(1);
   }
 
@@ -73,9 +130,6 @@ async function main() {
   // Load phrases
   const phrasesData = JSON.parse(fs.readFileSync(PHRASES_PATH, 'utf-8'));
   const allPhrases = phrasesData.phrases;
-
-  // Parse CLI filters
-  const filters = parseArgs(process.argv);
 
   // Determine which phrases to process
   let targetPhrases;
@@ -116,8 +170,16 @@ async function main() {
     fs.mkdirSync(IMAGES_DIR, { recursive: true });
   }
 
-  // Initialize OpenAI client
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  // Initialize API client
+  const hasSpecificFilter = filters.ids !== null || filters.phrase !== null;
+  let openai, googleAI;
+  if (filters.provider === 'openai') {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  } else {
+    googleAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENERATIVE_API_KEY });
+  }
+
+  console.log(`Using provider: ${filters.provider}\n`);
 
   let generated = 0;
   let skipped = 0;
@@ -127,8 +189,8 @@ async function main() {
     const relPath = `src/data/images/${slug}.png`;
     const absPath = path.join(__dirname, '..', relPath);
 
-    // Skip if image already exists on disk
-    if (fs.existsSync(absPath)) {
+    // Skip if image already exists on disk (only in default "all missing" mode)
+    if (!hasSpecificFilter && fs.existsSync(absPath)) {
       console.log(`[skip] ${phrase.id}. "${phrase.text}" — image exists at ${relPath}`);
       // Ensure the image field is set even if we skip generation
       const idx = allPhrases.findIndex((p) => p.id === phrase.id);
@@ -144,16 +206,12 @@ async function main() {
     console.log(`[gen]  ${phrase.id}. "${phrase.text}" — generating...`);
 
     try {
-      const response = await openai.images.generate({
-        model: 'dall-e-3',
-        prompt: prompt,
-        n: 1,
-        size: '1024x1024',
-        response_format: 'b64_json',
-      });
-
-      const imageData = response.data[0].b64_json;
-      const buffer = Buffer.from(imageData, 'base64');
+      let buffer;
+      if (filters.provider === 'openai') {
+        buffer = await generateWithOpenAI(openai, prompt);
+      } else {
+        buffer = await generateWithGoogle(googleAI, prompt);
+      }
       fs.writeFileSync(absPath, buffer);
 
       // Update phrase record
