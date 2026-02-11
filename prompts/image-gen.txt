@@ -1,1 +1,9 @@
-pencil cartoon sketch. 200x200. used in a flashcard app to learn a language. The answer is the phrase. This image should show the situation that would elicit the phrase "{phrase}"
+Create a pencil cartoon sketch. The size is 200x200.
+
+The image will be used in a flashcard app to learn a language. The answer is the phrase.
+
+This image should show the situation that would elicit the phrase "{phrase}"
+
+But do not include any text or words or writing in the image.
+
+The goal is to ilicit the phrase but not give the answer.

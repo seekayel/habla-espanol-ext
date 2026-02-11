@@ -174,7 +174,8 @@
       "category": "greetings",
       "english": "How are you? (formal)",
       "emoji": "🎩",
-      "complexity": 2
+      "complexity": 2,
+      "image": "src/data/images/como-esta.png"
     },
     {
       "id": 16,
@@ -597,7 +598,8 @@
       "category": "shopping",
       "english": "How much does it cost?",
       "emoji": "💵",
-      "complexity": 2
+      "complexity": 2,
+      "image": "src/data/images/cuanto-cuesta.png"
     },
     {
       "id": 69,
@@ -701,7 +703,8 @@
       "category": "daily",
       "english": "I'm lost",
       "emoji": "😰",
-      "complexity": 2
+      "complexity": 2,
+      "image": "src/data/images/estoy-perdido-a.png"
     },
     {
       "id": 82,
