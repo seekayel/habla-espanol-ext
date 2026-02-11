@@ -92,6 +92,27 @@ The script:
 - Updates `src/data/phrases.json` with the `image` path for each generated phrase
 - Skips phrases that already have an image on disk (safe to re-run)
 
+### Import Phrases
+
+Imports phrases and complexity scores from a markdown table into `src/data/phrases.json`. Matches existing phrases by comparing lowercase text; updates matched phrases with the complexity score, and appends unmatched phrases as new entries.
+
+```bash
+# Import from phrases.md at the project root
+npm run import-phrases -- phrases.md
+
+# Import from any markdown file with a | Frase | Complejidad | table
+npm run import-phrases -- path/to/file.md
+```
+
+The markdown file should contain a table like:
+
+```markdown
+| Frase | Complejidad |
+|---|---|
+| Hola | 0 |
+| Buenos días | 1 |
+```
+
 ### Generate Extension Icons
 
 Creates placeholder SVG icons for the extension.
@@ -127,7 +148,8 @@ habla-espanol-ext/
 │   └── image-gen.txt    # DALL-E prompt template
 ├── scripts/
 │   ├── generate-images.js  # DALL-E image generator CLI
-│   └── generate-icons.js   # Extension icon generator
+│   ├── generate-icons.js   # Extension icon generator
+│   └── import-phrases.js   # Phrase importer from markdown tables
 └── tests/               # Test suite
     ├── test-runner.html
     ├── test-runner.js
@@ -150,11 +172,14 @@ Edit `src/data/phrases.json` to add or modify phrases:
       "text": "Nueva frase",
       "category": "basics",
       "english": "New phrase",
-      "emoji": "🆕"
+      "emoji": "🆕",
+      "complexity": 2
     }
   ]
 }
 ```
+
+You can also bulk-import phrases from a markdown file using `npm run import-phrases` (see [Import Phrases](#import-phrases) above).
 
 ### Categories
 

@@ -5,7 +5,8 @@
   "description": "Chrome extension to learn Spanish phrases",
   "scripts": {
     "generate-images": "node scripts/generate-images.js",
-    "generate-icons": "node scripts/generate-icons.js"
+    "generate-icons": "node scripts/generate-icons.js",
+    "import-phrases": "node scripts/import-phrases.js"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

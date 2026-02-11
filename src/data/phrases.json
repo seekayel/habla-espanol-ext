@@ -1,124 +1,1489 @@
 {
   "version": "1.0.0",
   "categories": [
-    { "id": "basics", "name": "Lo Básico", "color": "#6366f1", "emoji": "👋" },
-    { "id": "greetings", "name": "Presentaciones y Cortesía", "color": "#8b5cf6", "emoji": "🤝" },
-    { "id": "communication", "name": "Comunicación", "color": "#ec4899", "emoji": "💬" },
-    { "id": "directions", "name": "Direcciones y Transporte", "color": "#f59e0b", "emoji": "🗺️" },
-    { "id": "food", "name": "Comida y Bebida", "color": "#10b981", "emoji": "🍽️" },
-    { "id": "shopping", "name": "Compras y Dinero", "color": "#3b82f6", "emoji": "💰" },
-    { "id": "daily", "name": "Necesidades Cotidianas", "color": "#ef4444", "emoji": "🏥" },
-    { "id": "time", "name": "Tiempo y Horarios", "color": "#14b8a6", "emoji": "🕐" },
-    { "id": "extras", "name": "Frases Útiles Extra", "color": "#f97316", "emoji": "✨" }
+    {
+      "id": "basics",
+      "name": "Lo Básico",
+      "color": "#6366f1",
+      "emoji": "👋"
+    },
+    {
+      "id": "greetings",
+      "name": "Presentaciones y Cortesía",
+      "color": "#8b5cf6",
+      "emoji": "🤝"
+    },
+    {
+      "id": "communication",
+      "name": "Comunicación",
+      "color": "#ec4899",
+      "emoji": "💬"
+    },
+    {
+      "id": "directions",
+      "name": "Direcciones y Transporte",
+      "color": "#f59e0b",
+      "emoji": "🗺️"
+    },
+    {
+      "id": "food",
+      "name": "Comida y Bebida",
+      "color": "#10b981",
+      "emoji": "🍽️"
+    },
+    {
+      "id": "shopping",
+      "name": "Compras y Dinero",
+      "color": "#3b82f6",
+      "emoji": "💰"
+    },
+    {
+      "id": "daily",
+      "name": "Necesidades Cotidianas",
+      "color": "#ef4444",
+      "emoji": "🏥"
+    },
+    {
+      "id": "time",
+      "name": "Tiempo y Horarios",
+      "color": "#14b8a6",
+      "emoji": "🕐"
+    },
+    {
+      "id": "extras",
+      "name": "Frases Útiles Extra",
+      "color": "#f97316",
+      "emoji": "✨"
+    }
   ],
   "phrases": [
-    { "id": 1, "text": "Hola", "category": "basics", "english": "Hello", "emoji": "👋" },
-    { "id": 2, "text": "Buenos días", "category": "basics", "english": "Good morning", "emoji": "🌅" },
-    { "id": 3, "text": "Buenas tardes", "category": "basics", "english": "Good afternoon", "emoji": "🌤️" },
-    { "id": 4, "text": "Buenas noches", "category": "basics", "english": "Good evening/night", "emoji": "🌙" },
-    { "id": 5, "text": "Por favor", "category": "basics", "english": "Please", "emoji": "🙏" },
-    { "id": 6, "text": "Gracias", "category": "basics", "english": "Thank you", "emoji": "💖" },
-    { "id": 7, "text": "Muchas gracias", "category": "basics", "english": "Thank you very much", "emoji": "🙌" },
-    { "id": 8, "text": "De nada", "category": "basics", "english": "You're welcome", "emoji": "😊" },
-    { "id": 9, "text": "Sí", "category": "basics", "english": "Yes", "emoji": "✅" },
-    { "id": 10, "text": "No", "category": "basics", "english": "No", "emoji": "❌" },
-    { "id": 11, "text": "Perdón", "category": "basics", "english": "Sorry/Pardon", "emoji": "😔" },
-    { "id": 12, "text": "Con permiso", "category": "basics", "english": "Excuse me (passing)", "emoji": "🚶" },
-    { "id": 13, "text": "Disculpe", "category": "basics", "english": "Excuse me (attention)", "emoji": "🙋" },
-
-    { "id": 14, "text": "Mucho gusto", "category": "greetings", "english": "Nice to meet you", "emoji": "🤝" },
-    { "id": 15, "text": "¿Cómo está?", "category": "greetings", "english": "How are you? (formal)", "emoji": "🎩" },
-    { "id": 16, "text": "¿Cómo estás?", "category": "greetings", "english": "How are you? (informal)", "emoji": "😄" },
-    { "id": 17, "text": "Muy bien", "category": "greetings", "english": "Very well", "emoji": "👍" },
-    { "id": 18, "text": "¿Y usted?", "category": "greetings", "english": "And you? (formal)", "emoji": "🎩" },
-    { "id": 19, "text": "Me llamo…", "category": "greetings", "english": "My name is...", "emoji": "📛" },
-    { "id": 20, "text": "Soy de…", "category": "greetings", "english": "I'm from...", "emoji": "🌍" },
-    { "id": 21, "text": "Buen provecho", "category": "greetings", "english": "Enjoy your meal", "emoji": "🍴" },
-    { "id": 22, "text": "Igualmente", "category": "greetings", "english": "Likewise", "emoji": "🔄" },
-    { "id": 23, "text": "Con mucho gusto", "category": "greetings", "english": "With pleasure", "emoji": "😊" },
-    { "id": 24, "text": "Que le vaya bien", "category": "greetings", "english": "Take care/Farewell", "emoji": "👋" },
-
-    { "id": 25, "text": "No entiendo", "category": "communication", "english": "I don't understand", "emoji": "😕" },
-    { "id": 26, "text": "No sé", "category": "communication", "english": "I don't know", "emoji": "🤷" },
-    { "id": 27, "text": "Más despacio", "category": "communication", "english": "More slowly", "emoji": "🐢" },
-    { "id": 28, "text": "¿Habla inglés?", "category": "communication", "english": "Do you speak English?", "emoji": "🇬🇧" },
-    { "id": 29, "text": "¿Cómo se dice…?", "category": "communication", "english": "How do you say...?", "emoji": "💭" },
-    { "id": 30, "text": "¿Qué es esto?", "category": "communication", "english": "What is this?", "emoji": "🤔" },
-    { "id": 31, "text": "¿Qué significa…?", "category": "communication", "english": "What does ... mean?", "emoji": "📖" },
-    { "id": 32, "text": "Otra vez", "category": "communication", "english": "Again", "emoji": "🔁" },
-    { "id": 33, "text": "¿Me puede ayudar?", "category": "communication", "english": "Can you help me?", "emoji": "🆘" },
-    { "id": 34, "text": "Un momento", "category": "communication", "english": "One moment", "emoji": "⏳" },
-
-    { "id": 35, "text": "¿Dónde está…?", "category": "directions", "english": "Where is...?", "emoji": "📍" },
-    { "id": 36, "text": "¿Cómo llego a…?", "category": "directions", "english": "How do I get to...?", "emoji": "🗺️" },
-    { "id": 37, "text": "A la derecha", "category": "directions", "english": "To the right", "emoji": "➡️" },
-    { "id": 38, "text": "A la izquierda", "category": "directions", "english": "To the left", "emoji": "⬅️" },
-    { "id": 39, "text": "Derecho", "category": "directions", "english": "Straight ahead", "emoji": "⬆️" },
-    { "id": 40, "text": "Está cerca", "category": "directions", "english": "It's close", "emoji": "📏" },
-    { "id": 41, "text": "Está lejos", "category": "directions", "english": "It's far", "emoji": "🛤️" },
-    { "id": 42, "text": "La parada", "category": "directions", "english": "The stop", "emoji": "🚏" },
-    { "id": 43, "text": "El centro", "category": "directions", "english": "Downtown/Center", "emoji": "🏛️" },
-    { "id": 44, "text": "Aquí, por favor", "category": "directions", "english": "Here, please", "emoji": "📌" },
-    { "id": 45, "text": "¿A cuántas cuadras?", "category": "directions", "english": "How many blocks?", "emoji": "🧱" },
-    { "id": 46, "text": "En la esquina", "category": "directions", "english": "On the corner", "emoji": "↪️" },
-    { "id": 47, "text": "La próxima calle", "category": "directions", "english": "The next street", "emoji": "🛣️" },
-    { "id": 48, "text": "¿Pasa por…?", "category": "directions", "english": "Does it pass by...?", "emoji": "🚌" },
-
-    { "id": 49, "text": "Tengo hambre", "category": "food", "english": "I'm hungry", "emoji": "😋" },
-    { "id": 50, "text": "Tengo sed", "category": "food", "english": "I'm thirsty", "emoji": "🥤" },
-    { "id": 51, "text": "Una mesa", "category": "food", "english": "A table", "emoji": "🪑" },
-    { "id": 52, "text": "La carta", "category": "food", "english": "The menu", "emoji": "📋" },
-    { "id": 53, "text": "¿Qué recomienda?", "category": "food", "english": "What do you recommend?", "emoji": "👨‍🍳" },
-    { "id": 54, "text": "Sin picante", "category": "food", "english": "Without spice", "emoji": "🌶️" },
-    { "id": 55, "text": "Con todo", "category": "food", "english": "With everything", "emoji": "🌯" },
-    { "id": 56, "text": "Muy rico", "category": "food", "english": "Very delicious", "emoji": "😍" },
-    { "id": 57, "text": "Agua natural", "category": "food", "english": "Still water", "emoji": "💧" },
-    { "id": 58, "text": "Agua mineral", "category": "food", "english": "Sparkling water", "emoji": "🫧" },
-    { "id": 59, "text": "Una cerveza", "category": "food", "english": "A beer", "emoji": "🍺" },
-    { "id": 60, "text": "Un café", "category": "food", "english": "A coffee", "emoji": "☕" },
-    { "id": 61, "text": "Para llevar", "category": "food", "english": "To go", "emoji": "📦" },
-    { "id": 62, "text": "Para aquí", "category": "food", "english": "For here", "emoji": "🍽️" },
-    { "id": 63, "text": "La cuenta", "category": "food", "english": "The bill", "emoji": "🧾" },
-    { "id": 64, "text": "Está muy bueno", "category": "food", "english": "It's very good", "emoji": "👌" },
-    { "id": 65, "text": "Nada más", "category": "food", "english": "Nothing else", "emoji": "🙅" },
-    { "id": 66, "text": "Un poco más", "category": "food", "english": "A little more", "emoji": "➕" },
-    { "id": 67, "text": "Sin hielo", "category": "food", "english": "Without ice", "emoji": "🧊" },
-
-    { "id": 68, "text": "¿Cuánto cuesta?", "category": "shopping", "english": "How much does it cost?", "emoji": "💵" },
-    { "id": 69, "text": "¿Cuánto es?", "category": "shopping", "english": "How much is it?", "emoji": "💰" },
-    { "id": 70, "text": "Muy caro", "category": "shopping", "english": "Very expensive", "emoji": "💸" },
-    { "id": 71, "text": "¿Tiene más barato?", "category": "shopping", "english": "Do you have cheaper?", "emoji": "📉" },
-    { "id": 72, "text": "Efectivo", "category": "shopping", "english": "Cash", "emoji": "💵" },
-    { "id": 73, "text": "Con tarjeta", "category": "shopping", "english": "With card", "emoji": "💳" },
-    { "id": 74, "text": "¿Tiene…?", "category": "shopping", "english": "Do you have...?", "emoji": "🛒" },
-    { "id": 75, "text": "Me lo llevo", "category": "shopping", "english": "I'll take it", "emoji": "🛍️" },
-    { "id": 76, "text": "Solo estoy viendo", "category": "shopping", "english": "Just looking", "emoji": "👀" },
-    { "id": 77, "text": "¿Tiene cambio?", "category": "shopping", "english": "Do you have change?", "emoji": "🪙" },
-    { "id": 78, "text": "El recibo", "category": "shopping", "english": "The receipt", "emoji": "🧾" },
-
-    { "id": 79, "text": "El baño", "category": "daily", "english": "The bathroom", "emoji": "🚻" },
-    { "id": 80, "text": "Necesito ayuda", "category": "daily", "english": "I need help", "emoji": "🆘" },
-    { "id": 81, "text": "Estoy perdido/a", "category": "daily", "english": "I'm lost", "emoji": "😰" },
-    { "id": 82, "text": "Hace mucho calor", "category": "daily", "english": "It's very hot", "emoji": "🥵", "image": "src/data/images/hace-mucho-calor.png" },
-    { "id": 83, "text": "Tengo calor", "category": "daily", "english": "I'm hot", "emoji": "🌡️" },
-    { "id": 84, "text": "Me duele", "category": "daily", "english": "It hurts", "emoji": "🤕" },
-    { "id": 85, "text": "Una farmacia", "category": "daily", "english": "A pharmacy", "emoji": "💊" },
-    { "id": 86, "text": "Un hospital", "category": "daily", "english": "A hospital", "emoji": "🏥" },
-    { "id": 87, "text": "Es urgente", "category": "daily", "english": "It's urgent", "emoji": "🚨" },
-    { "id": 88, "text": "Estoy bien", "category": "daily", "english": "I'm fine", "emoji": "👍" },
-    { "id": 89, "text": "No me siento bien", "category": "daily", "english": "I don't feel well", "emoji": "🤢" },
-    { "id": 90, "text": "Necesito un doctor", "category": "daily", "english": "I need a doctor", "emoji": "👨‍⚕️" },
-
-    { "id": 91, "text": "¿Qué hora es?", "category": "time", "english": "What time is it?", "emoji": "🕐" },
-    { "id": 92, "text": "¿A qué hora abre?", "category": "time", "english": "What time does it open?", "emoji": "🔓" },
-    { "id": 93, "text": "¿A qué hora cierra?", "category": "time", "english": "What time does it close?", "emoji": "🔒" },
-    { "id": 94, "text": "Hoy", "category": "time", "english": "Today", "emoji": "📅" },
-    { "id": 95, "text": "Mañana", "category": "time", "english": "Tomorrow", "emoji": "🌅" },
-    { "id": 96, "text": "Ahorita", "category": "time", "english": "Right now (soon)", "emoji": "⏰" },
-
-    { "id": 97, "text": "No hay problema", "category": "extras", "english": "No problem", "emoji": "👌" },
-    { "id": 98, "text": "Está bien", "category": "extras", "english": "It's okay", "emoji": "✔️" },
-    { "id": 99, "text": "¡Claro que sí!", "category": "extras", "english": "Of course!", "emoji": "💯" },
-    { "id": 100, "text": "¡Salud!", "category": "extras", "english": "Cheers!/Bless you!", "emoji": "🥂" }
+    {
+      "id": 1,
+      "text": "Hola",
+      "category": "basics",
+      "english": "Hello",
+      "emoji": "👋",
+      "complexity": 0
+    },
+    {
+      "id": 2,
+      "text": "Buenos días",
+      "category": "basics",
+      "english": "Good morning",
+      "emoji": "🌅",
+      "complexity": 1
+    },
+    {
+      "id": 3,
+      "text": "Buenas tardes",
+      "category": "basics",
+      "english": "Good afternoon",
+      "emoji": "🌤️",
+      "complexity": 1
+    },
+    {
+      "id": 4,
+      "text": "Buenas noches",
+      "category": "basics",
+      "english": "Good evening/night",
+      "emoji": "🌙",
+      "complexity": 1
+    },
+    {
+      "id": 5,
+      "text": "Por favor",
+      "category": "basics",
+      "english": "Please",
+      "emoji": "🙏",
+      "complexity": 0
+    },
+    {
+      "id": 6,
+      "text": "Gracias",
+      "category": "basics",
+      "english": "Thank you",
+      "emoji": "💖",
+      "complexity": 0
+    },
+    {
+      "id": 7,
+      "text": "Muchas gracias",
+      "category": "basics",
+      "english": "Thank you very much",
+      "emoji": "🙌"
+    },
+    {
+      "id": 8,
+      "text": "De nada",
+      "category": "basics",
+      "english": "You're welcome",
+      "emoji": "😊",
+      "complexity": 1
+    },
+    {
+      "id": 9,
+      "text": "Sí",
+      "category": "basics",
+      "english": "Yes",
+      "emoji": "✅",
+      "complexity": 0
+    },
+    {
+      "id": 10,
+      "text": "No",
+      "category": "basics",
+      "english": "No",
+      "emoji": "❌",
+      "complexity": 0
+    },
+    {
+      "id": 11,
+      "text": "Perdón",
+      "category": "basics",
+      "english": "Sorry/Pardon",
+      "emoji": "😔",
+      "complexity": 0
+    },
+    {
+      "id": 12,
+      "text": "Con permiso",
+      "category": "basics",
+      "english": "Excuse me (passing)",
+      "emoji": "🚶",
+      "complexity": 1
+    },
+    {
+      "id": 13,
+      "text": "Disculpe",
+      "category": "basics",
+      "english": "Excuse me (attention)",
+      "emoji": "🙋",
+      "complexity": 1
+    },
+    {
+      "id": 14,
+      "text": "Mucho gusto",
+      "category": "greetings",
+      "english": "Nice to meet you",
+      "emoji": "🤝",
+      "complexity": 1
+    },
+    {
+      "id": 15,
+      "text": "¿Cómo está?",
+      "category": "greetings",
+      "english": "How are you? (formal)",
+      "emoji": "🎩",
+      "complexity": 2
+    },
+    {
+      "id": 16,
+      "text": "¿Cómo estás?",
+      "category": "greetings",
+      "english": "How are you? (informal)",
+      "emoji": "😄",
+      "complexity": 2
+    },
+    {
+      "id": 17,
+      "text": "Muy bien",
+      "category": "greetings",
+      "english": "Very well",
+      "emoji": "👍",
+      "complexity": 1
+    },
+    {
+      "id": 18,
+      "text": "¿Y usted?",
+      "category": "greetings",
+      "english": "And you? (formal)",
+      "emoji": "🎩",
+      "complexity": 2
+    },
+    {
+      "id": 19,
+      "text": "Me llamo…",
+      "category": "greetings",
+      "english": "My name is...",
+      "emoji": "📛",
+      "complexity": 2
+    },
+    {
+      "id": 20,
+      "text": "Soy de…",
+      "category": "greetings",
+      "english": "I'm from...",
+      "emoji": "🌍",
+      "complexity": 2
+    },
+    {
+      "id": 21,
+      "text": "Buen provecho",
+      "category": "greetings",
+      "english": "Enjoy your meal",
+      "emoji": "🍴",
+      "complexity": 1
+    },
+    {
+      "id": 22,
+      "text": "Igualmente",
+      "category": "greetings",
+      "english": "Likewise",
+      "emoji": "🔄",
+      "complexity": 2
+    },
+    {
+      "id": 23,
+      "text": "Con mucho gusto",
+      "category": "greetings",
+      "english": "With pleasure",
+      "emoji": "😊",
+      "complexity": 2
+    },
+    {
+      "id": 24,
+      "text": "Que le vaya bien",
+      "category": "greetings",
+      "english": "Take care/Farewell",
+      "emoji": "👋",
+      "complexity": 3
+    },
+    {
+      "id": 25,
+      "text": "No entiendo",
+      "category": "communication",
+      "english": "I don't understand",
+      "emoji": "😕",
+      "complexity": 2
+    },
+    {
+      "id": 26,
+      "text": "No sé",
+      "category": "communication",
+      "english": "I don't know",
+      "emoji": "🤷",
+      "complexity": 1
+    },
+    {
+      "id": 27,
+      "text": "Más despacio",
+      "category": "communication",
+      "english": "More slowly",
+      "emoji": "🐢",
+      "complexity": 2
+    },
+    {
+      "id": 28,
+      "text": "¿Habla inglés?",
+      "category": "communication",
+      "english": "Do you speak English?",
+      "emoji": "🇬🇧",
+      "complexity": 2
+    },
+    {
+      "id": 29,
+      "text": "¿Cómo se dice…?",
+      "category": "communication",
+      "english": "How do you say...?",
+      "emoji": "💭",
+      "complexity": 3
+    },
+    {
+      "id": 30,
+      "text": "¿Qué es esto?",
+      "category": "communication",
+      "english": "What is this?",
+      "emoji": "🤔",
+      "complexity": 2
+    },
+    {
+      "id": 31,
+      "text": "¿Qué significa…?",
+      "category": "communication",
+      "english": "What does ... mean?",
+      "emoji": "📖",
+      "complexity": 3
+    },
+    {
+      "id": 32,
+      "text": "Otra vez",
+      "category": "communication",
+      "english": "Again",
+      "emoji": "🔁",
+      "complexity": 1
+    },
+    {
+      "id": 33,
+      "text": "¿Me puede ayudar?",
+      "category": "communication",
+      "english": "Can you help me?",
+      "emoji": "🆘",
+      "complexity": 3
+    },
+    {
+      "id": 34,
+      "text": "Un momento",
+      "category": "communication",
+      "english": "One moment",
+      "emoji": "⏳",
+      "complexity": 1
+    },
+    {
+      "id": 35,
+      "text": "¿Dónde está…?",
+      "category": "directions",
+      "english": "Where is...?",
+      "emoji": "📍",
+      "complexity": 2
+    },
+    {
+      "id": 36,
+      "text": "¿Cómo llego a…?",
+      "category": "directions",
+      "english": "How do I get to...?",
+      "emoji": "🗺️",
+      "complexity": 3
+    },
+    {
+      "id": 37,
+      "text": "A la derecha",
+      "category": "directions",
+      "english": "To the right",
+      "emoji": "➡️",
+      "complexity": 2
+    },
+    {
+      "id": 38,
+      "text": "A la izquierda",
+      "category": "directions",
+      "english": "To the left",
+      "emoji": "⬅️",
+      "complexity": 2
+    },
+    {
+      "id": 39,
+      "text": "Derecho",
+      "category": "directions",
+      "english": "Straight ahead",
+      "emoji": "⬆️",
+      "complexity": 1
+    },
+    {
+      "id": 40,
+      "text": "Está cerca",
+      "category": "directions",
+      "english": "It's close",
+      "emoji": "📏",
+      "complexity": 1
+    },
+    {
+      "id": 41,
+      "text": "Está lejos",
+      "category": "directions",
+      "english": "It's far",
+      "emoji": "🛤️",
+      "complexity": 1
+    },
+    {
+      "id": 42,
+      "text": "La parada",
+      "category": "directions",
+      "english": "The stop",
+      "emoji": "🚏",
+      "complexity": 1
+    },
+    {
+      "id": 43,
+      "text": "El centro",
+      "category": "directions",
+      "english": "Downtown/Center",
+      "emoji": "🏛️",
+      "complexity": 1
+    },
+    {
+      "id": 44,
+      "text": "Aquí, por favor",
+      "category": "directions",
+      "english": "Here, please",
+      "emoji": "📌",
+      "complexity": 2
+    },
+    {
+      "id": 45,
+      "text": "¿A cuántas cuadras?",
+      "category": "directions",
+      "english": "How many blocks?",
+      "emoji": "🧱",
+      "complexity": 3
+    },
+    {
+      "id": 46,
+      "text": "En la esquina",
+      "category": "directions",
+      "english": "On the corner",
+      "emoji": "↪️",
+      "complexity": 2
+    },
+    {
+      "id": 47,
+      "text": "La próxima calle",
+      "category": "directions",
+      "english": "The next street",
+      "emoji": "🛣️",
+      "complexity": 2
+    },
+    {
+      "id": 48,
+      "text": "¿Pasa por…?",
+      "category": "directions",
+      "english": "Does it pass by...?",
+      "emoji": "🚌",
+      "complexity": 3
+    },
+    {
+      "id": 49,
+      "text": "Tengo hambre",
+      "category": "food",
+      "english": "I'm hungry",
+      "emoji": "😋",
+      "complexity": 2
+    },
+    {
+      "id": 50,
+      "text": "Tengo sed",
+      "category": "food",
+      "english": "I'm thirsty",
+      "emoji": "🥤",
+      "complexity": 2
+    },
+    {
+      "id": 51,
+      "text": "Una mesa",
+      "category": "food",
+      "english": "A table",
+      "emoji": "🪑",
+      "complexity": 1
+    },
+    {
+      "id": 52,
+      "text": "La carta",
+      "category": "food",
+      "english": "The menu",
+      "emoji": "📋",
+      "complexity": 1
+    },
+    {
+      "id": 53,
+      "text": "¿Qué recomienda?",
+      "category": "food",
+      "english": "What do you recommend?",
+      "emoji": "👨‍🍳",
+      "complexity": 3
+    },
+    {
+      "id": 54,
+      "text": "Sin picante",
+      "category": "food",
+      "english": "Without spice",
+      "emoji": "🌶️",
+      "complexity": 1
+    },
+    {
+      "id": 55,
+      "text": "Con todo",
+      "category": "food",
+      "english": "With everything",
+      "emoji": "🌯",
+      "complexity": 1
+    },
+    {
+      "id": 56,
+      "text": "Muy rico",
+      "category": "food",
+      "english": "Very delicious",
+      "emoji": "😍",
+      "complexity": 1
+    },
+    {
+      "id": 57,
+      "text": "Agua natural",
+      "category": "food",
+      "english": "Still water",
+      "emoji": "💧",
+      "complexity": 1
+    },
+    {
+      "id": 58,
+      "text": "Agua mineral",
+      "category": "food",
+      "english": "Sparkling water",
+      "emoji": "🫧",
+      "complexity": 1
+    },
+    {
+      "id": 59,
+      "text": "Una cerveza",
+      "category": "food",
+      "english": "A beer",
+      "emoji": "🍺",
+      "complexity": 1
+    },
+    {
+      "id": 60,
+      "text": "Un café",
+      "category": "food",
+      "english": "A coffee",
+      "emoji": "☕",
+      "complexity": 1
+    },
+    {
+      "id": 61,
+      "text": "Para llevar",
+      "category": "food",
+      "english": "To go",
+      "emoji": "📦",
+      "complexity": 2
+    },
+    {
+      "id": 62,
+      "text": "Para aquí",
+      "category": "food",
+      "english": "For here",
+      "emoji": "🍽️",
+      "complexity": 1
+    },
+    {
+      "id": 63,
+      "text": "La cuenta",
+      "category": "food",
+      "english": "The bill",
+      "emoji": "🧾",
+      "complexity": 1
+    },
+    {
+      "id": 64,
+      "text": "Está muy bueno",
+      "category": "food",
+      "english": "It's very good",
+      "emoji": "👌"
+    },
+    {
+      "id": 65,
+      "text": "Nada más",
+      "category": "food",
+      "english": "Nothing else",
+      "emoji": "🙅",
+      "complexity": 1
+    },
+    {
+      "id": 66,
+      "text": "Un poco más",
+      "category": "food",
+      "english": "A little more",
+      "emoji": "➕",
+      "complexity": 2
+    },
+    {
+      "id": 67,
+      "text": "Sin hielo",
+      "category": "food",
+      "english": "Without ice",
+      "emoji": "🧊",
+      "complexity": 1
+    },
+    {
+      "id": 68,
+      "text": "¿Cuánto cuesta?",
+      "category": "shopping",
+      "english": "How much does it cost?",
+      "emoji": "💵",
+      "complexity": 2
+    },
+    {
+      "id": 69,
+      "text": "¿Cuánto es?",
+      "category": "shopping",
+      "english": "How much is it?",
+      "emoji": "💰",
+      "complexity": 2
+    },
+    {
+      "id": 70,
+      "text": "Muy caro",
+      "category": "shopping",
+      "english": "Very expensive",
+      "emoji": "💸",
+      "complexity": 1
+    },
+    {
+      "id": 71,
+      "text": "¿Tiene más barato?",
+      "category": "shopping",
+      "english": "Do you have cheaper?",
+      "emoji": "📉",
+      "complexity": 3
+    },
+    {
+      "id": 72,
+      "text": "Efectivo",
+      "category": "shopping",
+      "english": "Cash",
+      "emoji": "💵",
+      "complexity": 1
+    },
+    {
+      "id": 73,
+      "text": "Con tarjeta",
+      "category": "shopping",
+      "english": "With card",
+      "emoji": "💳",
+      "complexity": 1
+    },
+    {
+      "id": 74,
+      "text": "¿Tiene…?",
+      "category": "shopping",
+      "english": "Do you have...?",
+      "emoji": "🛒",
+      "complexity": 2
+    },
+    {
+      "id": 75,
+      "text": "Me lo llevo",
+      "category": "shopping",
+      "english": "I'll take it",
+      "emoji": "🛍️",
+      "complexity": 3
+    },
+    {
+      "id": 76,
+      "text": "Solo estoy viendo",
+      "category": "shopping",
+      "english": "Just looking",
+      "emoji": "👀",
+      "complexity": 3
+    },
+    {
+      "id": 77,
+      "text": "¿Tiene cambio?",
+      "category": "shopping",
+      "english": "Do you have change?",
+      "emoji": "🪙",
+      "complexity": 3
+    },
+    {
+      "id": 78,
+      "text": "El recibo",
+      "category": "shopping",
+      "english": "The receipt",
+      "emoji": "🧾",
+      "complexity": 1
+    },
+    {
+      "id": 79,
+      "text": "El baño",
+      "category": "daily",
+      "english": "The bathroom",
+      "emoji": "🚻",
+      "complexity": 1
+    },
+    {
+      "id": 80,
+      "text": "Necesito ayuda",
+      "category": "daily",
+      "english": "I need help",
+      "emoji": "🆘",
+      "complexity": 2
+    },
+    {
+      "id": 81,
+      "text": "Estoy perdido/a",
+      "category": "daily",
+      "english": "I'm lost",
+      "emoji": "😰",
+      "complexity": 2
+    },
+    {
+      "id": 82,
+      "text": "Hace mucho calor",
+      "category": "daily",
+      "english": "It's very hot",
+      "emoji": "🥵",
+      "image": "src/data/images/hace-mucho-calor.png",
+      "complexity": 2
+    },
+    {
+      "id": 83,
+      "text": "Tengo calor",
+      "category": "daily",
+      "english": "I'm hot",
+      "emoji": "🌡️",
+      "complexity": 2
+    },
+    {
+      "id": 84,
+      "text": "Me duele",
+      "category": "daily",
+      "english": "It hurts",
+      "emoji": "🤕",
+      "complexity": 2
+    },
+    {
+      "id": 85,
+      "text": "Una farmacia",
+      "category": "daily",
+      "english": "A pharmacy",
+      "emoji": "💊",
+      "complexity": 1
+    },
+    {
+      "id": 86,
+      "text": "Un hospital",
+      "category": "daily",
+      "english": "A hospital",
+      "emoji": "🏥",
+      "complexity": 1
+    },
+    {
+      "id": 87,
+      "text": "Es urgente",
+      "category": "daily",
+      "english": "It's urgent",
+      "emoji": "🚨",
+      "complexity": 2
+    },
+    {
+      "id": 88,
+      "text": "Estoy bien",
+      "category": "daily",
+      "english": "I'm fine",
+      "emoji": "👍",
+      "complexity": 2
+    },
+    {
+      "id": 89,
+      "text": "No me siento bien",
+      "category": "daily",
+      "english": "I don't feel well",
+      "emoji": "🤢",
+      "complexity": 3
+    },
+    {
+      "id": 90,
+      "text": "Necesito un doctor",
+      "category": "daily",
+      "english": "I need a doctor",
+      "emoji": "👨‍⚕️",
+      "complexity": 3
+    },
+    {
+      "id": 91,
+      "text": "¿Qué hora es?",
+      "category": "time",
+      "english": "What time is it?",
+      "emoji": "🕐",
+      "complexity": 2
+    },
+    {
+      "id": 92,
+      "text": "¿A qué hora abre?",
+      "category": "time",
+      "english": "What time does it open?",
+      "emoji": "🔓",
+      "complexity": 3
+    },
+    {
+      "id": 93,
+      "text": "¿A qué hora cierra?",
+      "category": "time",
+      "english": "What time does it close?",
+      "emoji": "🔒",
+      "complexity": 3
+    },
+    {
+      "id": 94,
+      "text": "Hoy",
+      "category": "time",
+      "english": "Today",
+      "emoji": "📅",
+      "complexity": 0
+    },
+    {
+      "id": 95,
+      "text": "Mañana",
+      "category": "time",
+      "english": "Tomorrow",
+      "emoji": "🌅",
+      "complexity": 0
+    },
+    {
+      "id": 96,
+      "text": "Ahorita",
+      "category": "time",
+      "english": "Right now (soon)",
+      "emoji": "⏰",
+      "complexity": 1
+    },
+    {
+      "id": 97,
+      "text": "No hay problema",
+      "category": "extras",
+      "english": "No problem",
+      "emoji": "👌",
+      "complexity": 2
+    },
+    {
+      "id": 98,
+      "text": "Está bien",
+      "category": "extras",
+      "english": "It's okay",
+      "emoji": "✔️",
+      "complexity": 1
+    },
+    {
+      "id": 99,
+      "text": "¡Claro que sí!",
+      "category": "extras",
+      "english": "Of course!",
+      "emoji": "💯"
+    },
+    {
+      "id": 100,
+      "text": "¡Salud!",
+      "category": "extras",
+      "english": "Cheers!/Bless you!",
+      "emoji": "🥂",
+      "complexity": 1
+    },
+    {
+      "id": 101,
+      "text": "Adiós",
+      "complexity": 0
+    },
+    {
+      "id": 102,
+      "text": "Hasta luego",
+      "complexity": 1
+    },
+    {
+      "id": 103,
+      "text": "Hasta mañana",
+      "complexity": 1
+    },
+    {
+      "id": 104,
+      "text": "Ayer",
+      "complexity": 0
+    },
+    {
+      "id": 105,
+      "text": "Ahora",
+      "complexity": 0
+    },
+    {
+      "id": 106,
+      "text": "Aquí",
+      "complexity": 0
+    },
+    {
+      "id": 107,
+      "text": "Allá",
+      "complexity": 0
+    },
+    {
+      "id": 108,
+      "text": "Más",
+      "complexity": 0
+    },
+    {
+      "id": 109,
+      "text": "Menos",
+      "complexity": 0
+    },
+    {
+      "id": 110,
+      "text": "Bien",
+      "complexity": 0
+    },
+    {
+      "id": 111,
+      "text": "Mal",
+      "complexity": 0
+    },
+    {
+      "id": 112,
+      "text": "Mucho",
+      "complexity": 0
+    },
+    {
+      "id": 113,
+      "text": "Poco",
+      "complexity": 0
+    },
+    {
+      "id": 114,
+      "text": "Grande",
+      "complexity": 0
+    },
+    {
+      "id": 115,
+      "text": "Pequeño",
+      "complexity": 0
+    },
+    {
+      "id": 116,
+      "text": "Caliente",
+      "complexity": 1
+    },
+    {
+      "id": 117,
+      "text": "Frío",
+      "complexity": 0
+    },
+    {
+      "id": 118,
+      "text": "Agua",
+      "complexity": 0
+    },
+    {
+      "id": 119,
+      "text": "La salida",
+      "complexity": 1
+    },
+    {
+      "id": 120,
+      "text": "La entrada",
+      "complexity": 1
+    },
+    {
+      "id": 121,
+      "text": "La calle",
+      "complexity": 1
+    },
+    {
+      "id": 122,
+      "text": "La esquina",
+      "complexity": 1
+    },
+    {
+      "id": 123,
+      "text": "Un poco",
+      "complexity": 1
+    },
+    {
+      "id": 124,
+      "text": "Un doctor",
+      "complexity": 1
+    },
+    {
+      "id": 125,
+      "text": "Un taxi",
+      "complexity": 1
+    },
+    {
+      "id": 126,
+      "text": "El mercado",
+      "complexity": 1
+    },
+    {
+      "id": 127,
+      "text": "El hotel",
+      "complexity": 1
+    },
+    {
+      "id": 128,
+      "text": "El aeropuerto",
+      "complexity": 1
+    },
+    {
+      "id": 129,
+      "text": "La playa",
+      "complexity": 1
+    },
+    {
+      "id": 130,
+      "text": "Claro",
+      "complexity": 1
+    },
+    {
+      "id": 131,
+      "text": "Claro que sí",
+      "complexity": 1
+    },
+    {
+      "id": 132,
+      "text": "Tengo frío",
+      "complexity": 2
+    },
+    {
+      "id": 133,
+      "text": "Tengo prisa",
+      "complexity": 2
+    },
+    {
+      "id": 134,
+      "text": "Estoy buscando…",
+      "complexity": 3
+    },
+    {
+      "id": 135,
+      "text": "¿Dónde hay…?",
+      "complexity": 2
+    },
+    {
+      "id": 136,
+      "text": "¿Está abierto?",
+      "complexity": 2
+    },
+    {
+      "id": 137,
+      "text": "¿Está cerrado?",
+      "complexity": 2
+    },
+    {
+      "id": 138,
+      "text": "¿Acepta tarjeta?",
+      "complexity": 3
+    },
+    {
+      "id": 139,
+      "text": "¿Tiene Wi-Fi?",
+      "complexity": 2
+    },
+    {
+      "id": 140,
+      "text": "¿Cuál es la contraseña?",
+      "complexity": 3
+    },
+    {
+      "id": 141,
+      "text": "No funciona",
+      "complexity": 2
+    },
+    {
+      "id": 142,
+      "text": "Se me olvidó",
+      "complexity": 3
+    },
+    {
+      "id": 143,
+      "text": "No hay",
+      "complexity": 2
+    },
+    {
+      "id": 144,
+      "text": "Ya merito",
+      "complexity": 2
+    },
+    {
+      "id": 145,
+      "text": "Está lloviendo",
+      "complexity": 2
+    },
+    {
+      "id": 146,
+      "text": "¿Tiene menú del día?",
+      "complexity": 4
+    },
+    {
+      "id": 147,
+      "text": "¿Qué me recomienda?",
+      "complexity": 3
+    },
+    {
+      "id": 148,
+      "text": "Quiero probar…",
+      "complexity": 3
+    },
+    {
+      "id": 149,
+      "text": "¿Es picante?",
+      "complexity": 2
+    },
+    {
+      "id": 150,
+      "text": "Sin cebolla",
+      "complexity": 2
+    },
+    {
+      "id": 151,
+      "text": "Sin cilantro",
+      "complexity": 2
+    },
+    {
+      "id": 152,
+      "text": "Bien cocido",
+      "complexity": 2
+    },
+    {
+      "id": 153,
+      "text": "Término medio",
+      "complexity": 2
+    },
+    {
+      "id": 154,
+      "text": "Con limón",
+      "complexity": 1
+    },
+    {
+      "id": 155,
+      "text": "Otra ronda",
+      "complexity": 2
+    },
+    {
+      "id": 156,
+      "text": "¿Incluye propina?",
+      "complexity": 3
+    },
+    {
+      "id": 157,
+      "text": "Está delicioso",
+      "complexity": 2
+    },
+    {
+      "id": 158,
+      "text": "La especialidad",
+      "complexity": 2
+    },
+    {
+      "id": 159,
+      "text": "¿Tiene algo vegetariano?",
+      "complexity": 4
+    },
+    {
+      "id": 160,
+      "text": "Soy alérgico/a a…",
+      "complexity": 4
+    },
+    {
+      "id": 161,
+      "text": "¿Lleva…?",
+      "complexity": 2
+    },
+    {
+      "id": 162,
+      "text": "¿Me trae la cuenta?",
+      "complexity": 4
+    },
+    {
+      "id": 163,
+      "text": "Cada quien",
+      "complexity": 3
+    },
+    {
+      "id": 164,
+      "text": "Todo junto",
+      "complexity": 2
+    },
+    {
+      "id": 165,
+      "text": "¿Tiene estacionamiento?",
+      "complexity": 4
+    },
+    {
+      "id": 166,
+      "text": "¿Cuánto se tarda?",
+      "complexity": 3
+    },
+    {
+      "id": 167,
+      "text": "¿A qué distancia?",
+      "complexity": 3
+    },
+    {
+      "id": 168,
+      "text": "Voy al centro",
+      "complexity": 3
+    },
+    {
+      "id": 169,
+      "text": "¿Por dónde queda…?",
+      "complexity": 4
+    },
+    {
+      "id": 170,
+      "text": "¿Me espera?",
+      "complexity": 3
+    },
+    {
+      "id": 171,
+      "text": "Regreso en un rato",
+      "complexity": 4
+    },
+    {
+      "id": 172,
+      "text": "A dos cuadras",
+      "complexity": 2
+    },
+    {
+      "id": 173,
+      "text": "Enfrente de",
+      "complexity": 2
+    },
+    {
+      "id": 174,
+      "text": "Al lado de",
+      "complexity": 2
+    },
+    {
+      "id": 175,
+      "text": "Detrás de",
+      "complexity": 2
+    },
+    {
+      "id": 176,
+      "text": "Cerca de aquí",
+      "complexity": 2
+    },
+    {
+      "id": 177,
+      "text": "¿Hay cajero cerca?",
+      "complexity": 3
+    },
+    {
+      "id": 178,
+      "text": "¿A qué hora sale?",
+      "complexity": 3
+    },
+    {
+      "id": 179,
+      "text": "Quiero ir a…",
+      "complexity": 3
+    },
+    {
+      "id": 180,
+      "text": "¿Me lleva a…?",
+      "complexity": 3
+    },
+    {
+      "id": 181,
+      "text": "Pare aquí",
+      "complexity": 2
+    },
+    {
+      "id": 182,
+      "text": "Siga derecho",
+      "complexity": 2
+    },
+    {
+      "id": 183,
+      "text": "Dé vuelta aquí",
+      "complexity": 3
+    },
+    {
+      "id": 184,
+      "text": "Me quedo aquí",
+      "complexity": 3
+    },
+    {
+      "id": 185,
+      "text": "¿Cuánto por noche?",
+      "complexity": 3
+    },
+    {
+      "id": 186,
+      "text": "¿Tiene disponible?",
+      "complexity": 3
+    },
+    {
+      "id": 187,
+      "text": "Tengo reservación",
+      "complexity": 3
+    },
+    {
+      "id": 188,
+      "text": "A nombre de…",
+      "complexity": 3
+    },
+    {
+      "id": 189,
+      "text": "No tiene aire",
+      "complexity": 3
+    },
+    {
+      "id": 190,
+      "text": "¿A qué hora es el desayuno?",
+      "complexity": 4
+    },
+    {
+      "id": 191,
+      "text": "¿Puede llamar un taxi?",
+      "complexity": 4
+    },
+    {
+      "id": 192,
+      "text": "¿Dónde puedo comprar…?",
+      "complexity": 4
+    },
+    {
+      "id": 193,
+      "text": "¿Qué tan lejos está?",
+      "complexity": 4
+    },
+    {
+      "id": 194,
+      "text": "¿Vale la pena?",
+      "complexity": 4
+    },
+    {
+      "id": 195,
+      "text": "Con calma",
+      "complexity": 2
+    },
+    {
+      "id": 196,
+      "text": "Poco a poco",
+      "complexity": 2
+    },
+    {
+      "id": 197,
+      "text": "Más o menos",
+      "complexity": 2
+    },
+    {
+      "id": 198,
+      "text": "Por eso",
+      "complexity": 2
+    },
+    {
+      "id": 199,
+      "text": "Tal vez",
+      "complexity": 2
+    },
+    {
+      "id": 200,
+      "text": "Depende",
+      "complexity": 2
+    },
+    {
+      "id": 201,
+      "text": "Qué padre",
+      "complexity": 2
+    },
+    {
+      "id": 202,
+      "text": "¡Órale!",
+      "complexity": 2
+    },
+    {
+      "id": 203,
+      "text": "Ni modo",
+      "complexity": 3
+    },
+    {
+      "id": 204,
+      "text": "¿En serio?",
+      "complexity": 2
+    },
+    {
+      "id": 205,
+      "text": "¡Qué lástima!",
+      "complexity": 3
+    },
+    {
+      "id": 206,
+      "text": "Fíjese que…",
+      "complexity": 4
+    },
+    {
+      "id": 207,
+      "text": "Con razón",
+      "complexity": 3
+    },
+    {
+      "id": 208,
+      "text": "¡Qué bonito!",
+      "complexity": 2
+    },
+    {
+      "id": 209,
+      "text": "Me encanta",
+      "complexity": 2
+    },
+    {
+      "id": 210,
+      "text": "No se preocupe",
+      "complexity": 3
+    },
+    {
+      "id": 211,
+      "text": "Tómese su tiempo",
+      "complexity": 4
+    },
+    {
+      "id": 212,
+      "text": "¿Le puedo tomar foto?",
+      "complexity": 5
+    },
+    {
+      "id": 213,
+      "text": "¿Sabe a qué hora…?",
+      "complexity": 4
+    },
+    {
+      "id": 214,
+      "text": "¿Me lo puede envolver?",
+      "complexity": 5
+    },
+    {
+      "id": 215,
+      "text": "¿Tiene en otra talla?",
+      "complexity": 5
+    },
+    {
+      "id": 216,
+      "text": "¿Tiene en otro color?",
+      "complexity": 4
+    },
+    {
+      "id": 217,
+      "text": "¿A cómo me lo deja?",
+      "complexity": 5
+    },
+    {
+      "id": 218,
+      "text": "Le doy…",
+      "complexity": 3
+    },
+    {
+      "id": 219,
+      "text": "Es mi última oferta",
+      "complexity": 5
+    },
+    {
+      "id": 220,
+      "text": "Me perdí",
+      "complexity": 2
+    },
+    {
+      "id": 221,
+      "text": "Se me perdió…",
+      "complexity": 3
+    },
+    {
+      "id": 222,
+      "text": "Perdí mi cartera",
+      "complexity": 4
+    },
+    {
+      "id": 223,
+      "text": "Perdí mi pasaporte",
+      "complexity": 4
+    },
+    {
+      "id": 224,
+      "text": "¿Dónde está la embajada?",
+      "complexity": 4
+    },
+    {
+      "id": 225,
+      "text": "Necesito hacer una llamada",
+      "complexity": 5
+    },
+    {
+      "id": 226,
+      "text": "¿Hay servicio de colectivo?",
+      "complexity": 5
+    }
   ]
 }
